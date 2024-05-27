@@ -54,9 +54,8 @@ const OrderItem = ({ order }: OrderItemProps) => {
         quantity: orderProduct.quantity,
       });
     }
+    router.push(`/restaurants/${order.restaurantId}`);
   };
-
-  router.push(`/restaurants/${order.restaurantId}`);
 
   return (
     <Card>
