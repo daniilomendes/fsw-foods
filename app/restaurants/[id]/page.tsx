@@ -1,11 +1,13 @@
 import { db } from "@/app/_lib/prisma";
 import { notFound } from "next/navigation";
-import RestaurantImage from "./_components/restaurants-image";
 import Image from "next/image";
 import { StarIcon } from "lucide-react";
 import DeliveryInfo from "@/app/_components/delivery-info";
 import ProductList from "@/app/_components/product-list";
 import CartBanner from "./_components/cart-banner";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/_lib/auth";
+import RestaurantImage from "./_components/restaurants-image";
 
 interface RestaurantPageProps {
   params: {
@@ -21,7 +23,7 @@ const RestaurantPage = async ({ params: { id } }: RestaurantPageProps) => {
     include: {
       categories: {
         orderBy: {
-          createdAt: "asc",
+          createdAt: "desc",
         },
         include: {
           products: {
@@ -54,10 +56,20 @@ const RestaurantPage = async ({ params: { id } }: RestaurantPageProps) => {
   if (!restaurant) {
     return notFound();
   }
+  const session = await getServerSession(authOptions);
+
+  const userFavoriteRestaurants = await db.userFavoriteRestaurant.findMany({
+    where: {
+      userId: session?.user.id,
+    },
+  });
 
   return (
     <div>
-      <RestaurantImage restaurant={restaurant} />
+      <RestaurantImage
+        restaurant={restaurant}
+        userFavoriteRestaurants={userFavoriteRestaurants}
+      />
 
       <div className="relative z-50 mt-[-1.5rem] flex items-center justify-between rounded-tl-3xl rounded-tr-3xl bg-white px-5 pt-5">
         <div className="flex items-center gap-[0.375rem]">
@@ -66,6 +78,7 @@ const RestaurantPage = async ({ params: { id } }: RestaurantPageProps) => {
               src={restaurant.imageUrl}
               alt={restaurant.name}
               fill
+              sizes="100%"
               className="rounded-full object-cover"
             />
           </div>
@@ -86,7 +99,7 @@ const RestaurantPage = async ({ params: { id } }: RestaurantPageProps) => {
         {restaurant.categories.map((category) => (
           <div
             key={category.id}
-            className="min-w-[167px] rounded-lg bg-[#f4f4f4] text-center "
+            className="min-w-[167px] rounded-lg bg-[#F4F4F4] text-center"
           >
             <span className="text-xs text-muted-foreground">
               {category.name}
@@ -96,13 +109,13 @@ const RestaurantPage = async ({ params: { id } }: RestaurantPageProps) => {
       </div>
 
       <div className="mt-6 space-y-4">
-        <h2 className="px-5 font-semibold">Mais Pedidos</h2>
+        <h2 className="px-5  font-semibold">Mais Pedidos</h2>
         <ProductList products={restaurant.products} />
       </div>
 
       {restaurant.categories.map((category) => (
-        <div key={category.id} className="mt-6 space-y-4">
-          <h2 className="px-5 font-semibold">{category.name}</h2>
+        <div className="mt-6 space-y-4" key={category.id}>
+          <h2 className="px-5  font-semibold">{category.name}</h2>
           <ProductList products={category.products} />
         </div>
       ))}
