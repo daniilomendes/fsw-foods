@@ -17,7 +17,7 @@ export default async function Home() {
         gt: 0,
       },
     },
-    take: 10,
+    take: 6,
     include: {
       restaurant: {
         select: {
@@ -31,8 +31,8 @@ export default async function Home() {
     <>
       <Header />
 
-      <div className="md:flex md:h-[500px] md:gap-8 md:bg-[#EA1D2C]">
-        <div className="md:flex md:flex-1 md:flex-col md:items-start md:gap-7 md:px-32 md:py-32">
+      <div className="md:container md:flex md:h-[500px] md:bg-[#EA1D2C] ">
+        <div className="md:flex md:flex-1 md:flex-col md:items-start md:py-40">
           <div className="md:flex md:flex-col md:gap-4">
             <h1 className="max-sm:hidden md:text-5xl md:font-bold md:text-white">
               Está com fome?
@@ -42,6 +42,7 @@ export default async function Home() {
               você.
             </p>
           </div>
+
           <div className="max-sm:px-5 max-sm:pt-6 md:w-full">
             <Search />
           </div>
@@ -57,19 +58,19 @@ export default async function Home() {
         </div>
       </div>
 
-      <div className="px-5 pt-5">
+      <div className="px-5 pt-5 md:container">
         <CategoryList />
       </div>
 
-      <div className="px-5 pt-6">
+      <div className="px-5 pt-6 md:hidden">
         <PromoBanner
           src="/promo-banner-01.png"
           alt="Até 30% de desconto em pizzas"
         />
       </div>
 
-      <div className="space-y-4 pt-6">
-        <div className="flex items-center justify-between px-5 ">
+      <div className="space-y-4 pt-6 md:container">
+        <div className="flex items-center justify-between max-sm:px-5 ">
           <h2 className="font-semibold">Pedidos Recomendados</h2>
           <Button
             variant="ghost"
@@ -85,15 +86,24 @@ export default async function Home() {
         <ProductList products={products} />
       </div>
 
-      <div className="px-5 pt-6">
-        <PromoBanner
-          src="/promo-banner-02.png"
-          alt="A partir de R$17,90 em lanches"
-        />
+      <div className="pt-6 md:container max-sm:px-5 md:flex md:flex-row md:gap-4">
+        <div className="hidden md:flex md:flex-1">
+          <PromoBanner
+            src="/promo-banner-01.png"
+            alt="Até 30% de desconto em pizzas"
+          />
+        </div>
+
+        <div className="md:flex md:flex-1">
+          <PromoBanner
+            src="/promo-banner-02.png"
+            alt="A partir de R$17,90 em lanches"
+          />
+        </div>
       </div>
 
-      <div className="space-y-4 py-6">
-        <div className="flex items-center justify-between px-5 ">
+      <div className="space-y-4 py-6 md:container">
+        <div className="flex items-center justify-between px-5">
           <h2 className="font-semibold">Restaurantes Recomendados</h2>
           <Button
             variant="ghost"
@@ -106,6 +116,7 @@ export default async function Home() {
             </Link>
           </Button>
         </div>
+
         <RestaurantList />
       </div>
     </>
