@@ -31,9 +31,9 @@ export default async function Home() {
     <>
       <Header />
 
-      <div className="md:container md:flex md:h-[500px] md:bg-[#EA1D2C] ">
-        <div className="md:flex md:flex-1 md:flex-col md:items-start md:py-40">
-          <div className="md:flex md:flex-col md:gap-4">
+      <div className="md:container md:flex md:h-[500px] md:bg-[#EA1D2C]">
+        <div className="md:flex md:flex-1 md:flex-col md:items-start md:gap-6 md:py-40">
+          <div className="md:flex md:flex-col md:gap-6">
             <h1 className="max-sm:hidden md:text-5xl md:font-bold md:text-white">
               Está com fome?
             </h1>
@@ -48,12 +48,12 @@ export default async function Home() {
           </div>
         </div>
 
-        <div className="md:relative md:right-20 md:top-[147px] md:flex-1">
+        <div className="md:relative md:flex md:flex-1">
           <Image
             src="/hero-banner.png"
             alt="Pizza imagem"
             fill
-            className="max-sm:hidden md:absolute md:left-1/2 md:top-1/2 md:mx-auto md:max-h-[371px] md:max-w-[371px] md:object-contain"
+            className="max-sm:hidden md:ml-36 md:mt-[147px] md:flex md:max-h-[371px] md:max-w-[371px] md:object-contain"
           />
         </div>
       </div>

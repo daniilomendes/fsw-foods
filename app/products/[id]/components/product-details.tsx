@@ -87,7 +87,7 @@ const ProductDetails = ({
 
   return (
     <>
-      <div className="relative z-50 mt-[-1.5rem] rounded-tl-3xl rounded-tr-3xl bg-white md:w-[50%] md:py-10">
+      <div className="relative z-50 mt-[-1.5rem] rounded-tl-3xl rounded-tr-3xl bg-white max-sm:pt-3 md:w-[50%] md:py-10">
         <Link
           href={`/restaurants/${product.restaurantId}`}
           className="flex items-center gap-[0.375rem] px-5"
@@ -157,7 +157,7 @@ const ProductDetails = ({
           <ProductList products={complementaryProducts} />
         </div>
 
-        <div className="mt-6 px-5">
+        <div className="mt-6 px-5 max-sm:mb-6">
           <Button
             className="w-full font-semibold"
             onClick={handleAddToCartClick}

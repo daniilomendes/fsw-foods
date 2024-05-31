@@ -24,7 +24,7 @@ const ProductImage = ({ product }: ProductImageProps) => {
         alt={product.name}
         fill
         sizes="100%"
-        className="rounded-md object-cover"
+        className="object-cover md:rounded-md"
       />
 
       <Button

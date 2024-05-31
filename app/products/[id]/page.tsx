@@ -45,7 +45,7 @@ const ProductPage = async ({ params: { id } }: ProductPageProps) => {
         <Header />
       </div>
       <div className="md:container md:mb-8">
-        <div className="flex flex-row">
+        <div className="md:flex md:flex-row">
           <div className="md:min-h-full md:w-1/2">
             <ProductImage product={product} />
           </div>
