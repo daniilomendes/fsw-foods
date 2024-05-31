@@ -42,7 +42,7 @@ const RestaurantImage = ({
         alt={restaurant.name}
         fill
         sizes="100%"
-        className="object-cover"
+        className="rounded-lg object-cover"
       />
 
       <Button

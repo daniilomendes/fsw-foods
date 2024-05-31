@@ -87,7 +87,7 @@ const ProductDetails = ({
 
   return (
     <>
-      <div className="relative z-50 mt-[-1.5rem] rounded-tl-3xl rounded-tr-3xl bg-white py-6">
+      <div className="relative z-50 mt-[-1.5rem] rounded-tl-3xl rounded-tr-3xl bg-white md:w-[50%] md:py-10">
         <Link
           href={`/restaurants/${product.restaurantId}`}
           className="flex items-center gap-[0.375rem] px-5"
@@ -152,8 +152,8 @@ const ProductDetails = ({
           <p className="text-sm text-muted-foreground">{product.description}</p>
         </div>
 
-        <div className="mt-6 space-y-3">
-          <h3 className="px-5 font-semibold">Sucos</h3>
+        <div className="mt-6 space-y-3 md:container md:hidden">
+          <h3 className="font-semibold max-sm:px-5">Sucos</h3>
           <ProductList products={complementaryProducts} />
         </div>
 

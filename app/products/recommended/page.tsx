@@ -9,7 +9,7 @@ const RecommendedProductsPage = async () => {
         gt: 0,
       },
     },
-    take: 20,
+    take: 18,
     include: {
       restaurant: {
         select: {
@@ -22,10 +22,10 @@ const RecommendedProductsPage = async () => {
   return (
     <>
       <Header />
-      <div className="px-5 py-6">
+      <div className="py-6 md:container max-sm:px-5">
         <h2 className="mb-6 text-lg font-semibold">Pedidos Recomendados</h2>
 
-        <div className="grid grid-cols-2 gap-6">
+        <div className="grid grid-cols-2 gap-6 md:grid-cols-6">
           {products.map((product) => (
             <ProductItem
               key={product.id}
